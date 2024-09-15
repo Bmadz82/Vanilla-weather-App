@@ -3,31 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Vanilla-weather-App</title>
+    <title>my vanilla weather</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
       <header class="search-box">
-        <form>
-          <<input id="cityInput" type="search" placeholder="enter city.." required />
-          <input type="submit" value="Search" onclick="getWeather(); return false;" />
+        <form onsubmit="getWeather(); return false;">
+          <input id="cityInput" type="search" placeholder="enter city.." required />
+          <input type="submit" value="Search" />
         </form>
       </header>
-      
+
       <main class="weather-box" style="display: none;">
         <div>
           <h1 id="cityName">City</h1>
           <p id="weatherDescription">Weather Description</p>
         </div>
         <div class="temp-section">
-          <img id="weatherIcon" src="" alt="weather icon">
+          <img id="weatherIcon" src="" alt="weather icon" />
           <h3 id="temp">Temperature</h3>
         </div>
         <div id="humidity">Humidity and Wind</div>
-          <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="weather icon">
-          <h3>12°C</h3>
-        </div>
       </main>
 
       <footer>
