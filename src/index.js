@@ -1,46 +1,58 @@
-const apiKey = 'f621af2b8e404096tbo6ee0a38f319c2'; // Make sure this key is correct
-const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
-
-function getWeather() {
-    const city = document.getElementById('cityInput').value;
-    if (city === "") {
-        alert("Please enter a city name.");
-        return;
+function refreshWeather(response) {
+    let temperatureElement = document.querySelector("#temperature");
+    let temperature = response.data.temperature.current;
+    let cityElement = document.querySelector("#city");
+    let descriptionElement = document.querySelector("#description");
+    let humidityElement = document.querySelector("#humidity");
+    let windSpeedElement = document.querySelector("#wind-speed");
+    let timeElement = document.querySelector("#time");
+    let date = new Date(response.data.time * 1000);
+    let iconElement = document.querySelector("#icon");
+  
+    cityElement.innerHTML = response.data.city;
+    timeElement.innerHTML = formatDate(date);
+    descriptionElement.innerHTML = response.data.condition.description;
+    humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+    windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+    temperatureElement.innerHTML = Math.round(temperature);
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+  }
+  
+  function formatDate(date) {
+    let minutes = date.getMinutes();
+    let hours = date.getHours();
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let day = days[date.getDay()];
+  
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
     }
-
-    fetch(`${apiUrl}?q=${city}&appid=${apiKey}&units=metric`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.cod === "404") {
-                alert("City not found.");
-                return;
-            }
-
-            displayWeather(data); // Corrected to pass the data from the API
-        })
-        .catch(error => {
-            console.error("Error fetching weather data:", error);
-        });
-}
-
-function displayWeather(data) {
-    const cityName = data.name;
-    const description = data.weather[0].description;
-    const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-    const temp = data.main.temp;
-    const windSpeed = data.wind.speed;
-    const humidity = data.main.humidity;
-
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const today = new Date();
-    const day = days[today.getDay()];
-    const time = today.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-
-    document.getElementById('cityName').innerText = cityName;
-    document.getElementById('weatherDescription').innerText = `${day} ${time}, ${description}`;
-    document.getElementById('weatherIcon').src = icon;
-    document.getElementById('temp').innerHTML = `${Math.round(temp)}<span>°C</span>`;
-    document.getElementById('humidity').innerHTML = `Humidity: <span style="color: #f56991">${humidity}%</span>, Wind: <span style="color: #f56991">${(windSpeed * 3.6).toFixed(2)} km/h</span>`; // Convert wind speed from m/s to km/h
-
-    document.querySelector('.weather-box').style.display = 'block';
-}
+  
+    return `${day} ${hours}:${minutes}`;
+  }
+  
+  function searchCity(city) {
+    let apiKey = "b2a5adcct04b33178913oc335f405433";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    axios.get(apiUrl).then(refreshWeather);
+  }
+  
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    let searchInput = document.querySelector("#search-form-input");
+  
+    searchCity(searchInput.value);
+  }
+  
+  let searchFormElement = document.querySelector("#search-form");
+  searchFormElement.addEventListener("submit", handleSearchSubmit);
+  
+  searchCity("Paris");
