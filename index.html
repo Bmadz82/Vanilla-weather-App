@@ -1,28 +1,28 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Weather App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="search-box">
-            <input type="text" id="cityInput" placeholder="Enter a city..">
-            <button onclick="getWeather()">Search</button>
-        </div>
-
-        <div id="weather" class="weather-box">
-            <h2 id="cityName"></h2>
-            <h3 id="weatherDescription"></h3>
-            <div class="temp-section">
-                <img id="weatherIcon" src="" alt="Weather Icon">
-                <h3 id="temp"></h3>
-            </div>
-            <p id="humidity"></p>
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meteo App</title>
+  </head>
+  <body>
+    <header>
+      <form>
+        <input type="search" placeholder="Enter a city.." required />
+        <input type="submit" value="Search" />
+      </form>
+    </header>
+    <main>
+      <div>
+        <h1>Paris</h1>
+        <p>
+          Tuesday 14:49, scattered clouds
+          <br />
+          Humidity: 66%, Wind: 3.13km/h
+        </p>
+      </div>
+      <div>🌤️ 12°C</div>
+    </main>
 
     <footer>
             This project was coded by
