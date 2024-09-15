@@ -10,21 +10,21 @@
     <div class="container">
       <header class="search-box">
         <form>
-          <input type="search" placeholder="enter city.." required />
-          <input type="submit" value="Search" />
+          <<input id="cityInput" type="search" placeholder="enter city.." required />
+          <input type="submit" value="Search" onclick="getWeather(); return false;" />
         </form>
       </header>
       
-      <main class="weather-box">
+      <main class="weather-box" style="display: none;">
         <div>
-          <h1>Paris</h1>
-          <p>
-            Sunday 14:27, scattered clouds
-            <br />
-            Humidity: 32%, Wind: 3.13km/h
-          </p>
+          <h1 id="cityName">City</h1>
+          <p id="weatherDescription">Weather Description</p>
         </div>
         <div class="temp-section">
+          <img id="weatherIcon" src="" alt="weather icon">
+          <h3 id="temp">Temperature</h3>
+        </div>
+        <div id="humidity">Humidity and Wind</div>
           <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="weather icon">
           <h3>12°C</h3>
         </div>
