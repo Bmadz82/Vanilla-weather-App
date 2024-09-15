@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter a city..">
+            <button onclick="getWeather()">Search</button>
+        </div>
+
+        <div id="weather" class="weather-box">
+            <h2 id="cityName"></h2>
+            <h3 id="weatherDescription"></h3>
+            <div class="temp-section">
+                <img id="weatherIcon" src="" alt="Weather Icon">
+                <h3 id="temp"></h3>
+            </div>
+            <p id="humidity"></p>
+        </div>
+    </div>
+
+    <footer>
+            This project was coded by
+        <a href="https://github.com/Bmadz82/" target="_blank"> Belinda Madzhie</a>,
+        is
+        <a href="https://github.com/Bmadz82/Vanilla-weather-App" target="_blank"
+          >open-sourced on GitHub</a>;
+        >
+        and
+        <a href="https://moonlit-hotteok-bec29f.netlify.app//" target="_blank"
+          >hosted on Netlify</a>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
